@@ -61,7 +61,7 @@ user.addHook('beforeCreate', (pendingUser) => { // pendingUser is user object th
 // return an object from the database of the user without the encrypted password
 user.prototype.toJSON = function() {
   let userData = this.get(); 
-  delete userData.password; // it doesn't delete password from database, only removes it. 
+  delete userData.password; // it doesn't delete password from database, only removes it from user view. 
   
   return userData;
 }
