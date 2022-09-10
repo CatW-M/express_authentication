@@ -3,21 +3,21 @@ const request = require('supertest');
 const app = require('../server');
 const db = require('../models');
 
-before(function(done) {
+before(function(done) { //syncing database with app
   db.sequelize.sync({ force: true }).then(function() {
     done();
   });
 });
-
+//start tests 
 describe('Auth Controller', function() {
-  describe('GET /auth/signup', function() {
-    it('should return a 200 response', function(done) {
-      request(app).get('/auth/signup').expect(200, done);
+  describe('GET /auth/signup', function() { //test get route
+    it('should return a 200 response', function(done) { //actual test
+      request(app).get('/auth/signup').expect(200, done);//test will try to access route
     });
   });
 
-  describe('POST /auth/signup', function() {
-    it('should redirect to / on success', function(done) {
+  describe('POST /auth/signup', function() { //testing a post
+    it('should redirect to / on success', function(done) { //sign a user up
       request(app).post('/auth/signup')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
@@ -29,7 +29,7 @@ describe('Auth Controller', function() {
       .expect(302, done);
     });
 
-    it('should redirect to /auth/signup on failure', function(done) {
+    it('should redirect to /auth/signup on failure', function(done) { //test for failed post route
       request(app).post('/auth/signup')
       .set('Content-Type', 'application/x-www-form-urlencoded')
       .send({
@@ -81,3 +81,4 @@ describe('Auth Controller', function() {
     });
   });
 });
+//end tests

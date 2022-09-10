@@ -97,6 +97,10 @@ git commit -m "Install dependencies for project"
 ```text
 sequelize db:create
 ```
+or
+```
+createdb express_auth_dev
+```
 
 
 
