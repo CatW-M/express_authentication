@@ -35,7 +35,13 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   res.render('index');
-})
+});
+
+// Add this above /auth controllers
+app.get('/profile', isLoggedIn, (req, res) => {
+  const { id, name, email } = req.user.get(); 
+  res.render('profile', { id, name, email });
+});
 
 //access to all of our auth routes GET /auth/login, GET /auth/signip POST routes
 app.use('/auth', require('./controllers/auth'));
