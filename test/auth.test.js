@@ -68,7 +68,7 @@ describe('Auth Controller', function() {
         email: 'new@new.co',
         password: 'p'
       })
-      .expect('Location', '/auth/login')
+      .expect(`Location`, '/auth/login')
       .expect(302, done);
     });
   });
